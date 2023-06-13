@@ -19,6 +19,12 @@ class MainWindow(QMainWindow):
         self.buttonRotationAccept.clicked.connect(self.accept_rotation)
         self.buttonRotationDiscard.clicked.connect(self.discard_rotation)
         
+    def show_image(self, image_path):
+        scene = QGraphicsScene()
+        pixmap = QPixmap(image_path)
+        pixmap_item = QGraphicsPixmapItem(pixmap)
+        scene.addItem(pixmap_item)
+        self.graphicsView.setScene(scene)
 
     def open_file_dialog(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Open File")
@@ -27,22 +33,13 @@ class MainWindow(QMainWindow):
             self.image_path = file_path
             self.image = Image.open(self.image_path)
             self.image.save(self.temp)
-            scene = QGraphicsScene()
-            pixmap = QPixmap(self.temp)
-            pixmap_item = QGraphicsPixmapItem(pixmap)
-            scene.addItem(pixmap_item)
-            self.graphicsView.setScene(scene)
+            self.show_image(self.temp)
 
     def rotate_image(self, value):
         if self.image_path != "":
             self.rotated_image = self.image.rotate(value, expand=True)
             self.rotated_image.save(self.temp)
-
-            pixmap = QPixmap(self.temp)
-            pixmap_item = QGraphicsPixmapItem(pixmap)
-            scene = QGraphicsScene()
-            scene.addItem(pixmap_item)
-            self.graphicsView.setScene(scene)
+            self.show_image(self.temp)
 
     def accept_rotation(self):
         self.current_image = self.rotated_image
@@ -51,11 +48,7 @@ class MainWindow(QMainWindow):
         self.rotated_image = self.image.rotate(0, expand=True)
         self.rotated_image.save(self.temp)
         self.current_image = self.rotated_image
-        pixmap = QPixmap(self.temp)
-        pixmap_item = QGraphicsPixmapItem(pixmap)
-        scene = QGraphicsScene()
-        scene.addItem(pixmap_item)
-        self.graphicsView.setScene(scene)
+        self.show_image(self.temp)
 
     def zoom_image(self, value):
         image = None
@@ -72,13 +65,7 @@ class MainWindow(QMainWindow):
 
             zoomed_image = image.resize((new_width, new_height))
             zoomed_image.save(self.temp)
-            # self.current_image = zoomed_image
-
-            pixmap = QPixmap(self.temp)
-            pixmap_item = QGraphicsPixmapItem(pixmap)
-            scene = QGraphicsScene()
-            scene.addItem(pixmap_item)
-            self.graphicsView.setScene(scene)
+            self.show_image(self.temp)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
