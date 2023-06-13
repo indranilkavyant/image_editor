@@ -1,15 +1,16 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QGraphicsScene, QGraphicsPixmapItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QGraphicsScene, QGraphicsPixmapItem, QGraphicsView
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PIL import Image
+from PyQt5.QtCore import QFileInfo
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
         uic.loadUi("MainWindow.ui", self)
-        self.temp = "temp.jpg"
+        self.temp = ""
         self.image_path = ""
         self.current_image = ""
         self.buttonOpenImage.clicked.connect(self.open_file_dialog)
@@ -18,6 +19,10 @@ class MainWindow(QMainWindow):
         self.sliderDisplayZoom.valueChanged.connect(self.zoom_image)
         self.buttonRotationAccept.clicked.connect(self.accept_rotation)
         self.buttonRotationDiscard.clicked.connect(self.discard_rotation)
+        self.buttonFitWindow.clicked.connect(self.fit_in_window)
+
+        # self.graphicsView = self.findChild(QGraphicsView, "graphicsView")
+
         
     def show_image(self, image_path):
         scene = QGraphicsScene()
@@ -32,6 +37,9 @@ class MainWindow(QMainWindow):
         if file_path:
             self.image_path = file_path
             self.image = Image.open(self.image_path)
+            file_info = QFileInfo(file_path)
+            file_extension = file_info.suffix()
+            self.temp = "temp."+file_extension
             self.image.save(self.temp)
             self.show_image(self.temp)
 
@@ -66,6 +74,24 @@ class MainWindow(QMainWindow):
             zoomed_image = image.resize((new_width, new_height))
             zoomed_image.save(self.temp)
             self.show_image(self.temp)
+
+    def fit_in_window(self):
+        image = None
+        if self.image_path != "":
+            if self.current_image != "":
+                image = self.current_image
+            else:
+                image = Image.open(self.image_path)
+
+        if image != None:
+            view_size = self.graphicsView.size()
+            new_width = int(view_size.width())
+            new_height = int(view_size.height())
+
+            zoomed_image = image.resize((new_width, new_height))
+            zoomed_image.save(self.temp)
+            self.show_image(self.temp)
+    
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
