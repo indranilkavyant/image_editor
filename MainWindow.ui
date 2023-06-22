@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1215</width>
-    <height>800</height>
+    <height>897</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -62,44 +62,17 @@ background-color : rgb(0, 50, 100) ;
          <x>0</x>
          <y>0</y>
          <width>751</width>
-         <height>739</height>
+         <height>836</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_11">
         <item>
-         <widget class="QGraphicsView" name="graphicsView">
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <property name="lineWidth">
-           <number>1</number>
-          </property>
-          <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustToContents</enum>
+         <widget class="QLabel" name="imageview">
+          <property name="text">
+           <string/>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
-          </property>
-          <property name="dragMode">
-           <enum>QGraphicsView::ScrollHandDrag</enum>
-          </property>
-          <property name="transformationAnchor">
-           <enum>QGraphicsView::AnchorUnderMouse</enum>
-          </property>
-          <property name="resizeAnchor">
-           <enum>QGraphicsView::AnchorUnderMouse</enum>
-          </property>
-          <property name="viewportUpdateMode">
-           <enum>QGraphicsView::SmartViewportUpdate</enum>
           </property>
          </widget>
         </item>
@@ -248,7 +221,7 @@ background-color : rgb(0, 250, 0) ;
           <x>0</x>
           <y>0</y>
           <width>422</width>
-          <height>667</height>
+          <height>764</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -451,8 +424,8 @@ background-color : rgb(0, 50, 100) ;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>139</width>
-                 <height>107</height>
+                 <width>394</width>
+                 <height>479</height>
                 </rect>
                </property>
                <attribute name="label">
@@ -607,8 +580,8 @@ background-color :rgb(0, 170, 250);
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>226</width>
-                 <height>173</height>
+                 <width>394</width>
+                 <height>479</height>
                 </rect>
                </property>
                <attribute name="label">
@@ -774,7 +747,7 @@ QPushButton::pressed{background-color :rgb(50, 50,50);}</string>
                  <x>0</x>
                  <y>0</y>
                  <width>394</width>
-                 <height>382</height>
+                 <height>479</height>
                 </rect>
                </property>
                <attribute name="label">
@@ -1017,8 +990,8 @@ QPushButton::pressed{background-color :rgb(50, 50, 50);}</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>104</width>
-                 <height>99</height>
+                 <width>394</width>
+                 <height>479</height>
                 </rect>
                </property>
                <attribute name="label">
